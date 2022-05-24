@@ -5,13 +5,13 @@ function Header() {
   return (
     <header className='header'>
       <div className='logo'>
-        <Link to='/'>Home</Link>
+        <Link to='/'>FileList</Link>
       </div>
       <ul>
         <li>
-          <Link to='/register'>
+          <Link to='/users/create'>
             <FaUser />
-            Register
+            Create User
           </Link>
         </li>
         <li>

@@ -8,7 +8,7 @@ const User = require('../models/userModel')
 // @route   /api/users
 // @access  admin
 const registerUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body
+  const { name, email, password } = req.body
 
   //validation
   if (!email || !password) {
@@ -29,6 +29,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // Create user
   const user = await User.create({
+    name,
     email,
     password: hashedPassword,
   })

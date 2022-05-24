@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaUser } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { loginUser } from '../features/auth/authSlice'
+import { createUser } from '../features/auth/authSlice'
 
-function Login() {
+function CreateUser() {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
+    password2: '',
   })
 
-  const { email, password } = formData
+  const { name, email, password, password2 } = formData
 
   const dispatch = useDispatch()
 
@@ -28,24 +30,40 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    const userData = {
-      email,
-      password,
+    if (password !== password2) {
+      toast.error('Passwords do not match')
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+      }
+      dispatch(createUser(userData))
     }
-
-    dispatch(loginUser(userData))
   }
 
   return (
     <>
       <section className='heading'>
         <h1>
-          <FaSignInAlt /> Login
+          <FaUser /> Create User
         </h1>
-        <p>Please log in</p>
+        <p></p>
       </section>
       <section className='form'>
         <form onSubmit={onSubmit}>
+          <div className='form-group'>
+            <input
+              type='text'
+              className='form-control'
+              name='name'
+              id='name'
+              value={name}
+              onChange={onChange}
+              placeholder='Enter name'
+              required
+            />
+          </div>
           <div className='form-group'>
             <input
               type='email'
@@ -70,7 +88,18 @@ function Login() {
               required
             />
           </div>
-
+          <div className='form-group'>
+            <input
+              type='password'
+              className='form-control'
+              name='password2'
+              id='password2'
+              value={password2}
+              onChange={onChange}
+              placeholder='Confirm password'
+              required
+            />
+          </div>
           <div className='form-group'>
             <button className='btn btn-block'>Submit</button>
           </div>
@@ -79,4 +108,4 @@ function Login() {
     </>
   )
 }
-export default Login
+export default CreateUser
