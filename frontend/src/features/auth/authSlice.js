@@ -14,7 +14,7 @@ export const createUser = createAsyncThunk(
   'auth/create_user',
   async (user, thunkAPI) => {
     try {
-      return await authService.register(user)
+      return await authService.createUser(user)
     } catch (error) {
       const message =
         (error.response &&
@@ -39,7 +39,14 @@ export const loginUser = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.isError = false
+      state.isSuccess = false
+      state.isLoading = false
+      state.message = ''
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createUser.pending, (state) => {
@@ -59,4 +66,5 @@ export const authSlice = createSlice({
   },
 })
 
+export const { reset } = authSlice.actions
 export default authSlice.reducer
