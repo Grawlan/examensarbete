@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FaUser } from 'react-icons/fa'
+import { FaUser, FaEnvelope } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { createUser, reset } from '../features/auth/authSlice'
 
@@ -59,64 +59,82 @@ function CreateUser() {
 
   return (
     <>
-      <section className='heading'>
+      <section className='container has-text-centered mb-5'>
         <h1>
           <FaUser /> Create User
         </h1>
         <p></p>
       </section>
-      <section className='form'>
+      <section className='columns is-centered'>
         <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              name='name'
-              id='name'
-              value={name}
-              onChange={onChange}
-              placeholder='Enter name'
-              required
-            />
+          <div className='field'>
+            <div className='control has-icons-left'>
+              <input
+                type='text'
+                className='input'
+                name='name'
+                id='name'
+                value={name}
+                onChange={onChange}
+                placeholder='Enter name'
+                required
+              />
+              <span className='icon is-small is-left'>
+                <FaUser />
+              </span>
+            </div>
           </div>
-          <div className='form-group'>
-            <input
-              type='email'
-              className='form-control'
-              name='email'
-              id='email'
-              value={email}
-              onChange={onChange}
-              placeholder='Enter email'
-              required
-            />
+          <div className='field'>
+            <div className='control has-icons-left'>
+              <input
+                type='email'
+                className='input'
+                name='email'
+                id='email'
+                value={email}
+                onChange={onChange}
+                placeholder='Enter email'
+                required
+              />
+              <span className='icon is-small is-left'>
+                <FaEnvelope />
+              </span>
+            </div>
           </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              name='password'
-              id='password'
-              value={password}
-              onChange={onChange}
-              placeholder='Enter password'
-              required
-            />
+          <div className='field'>
+            <div className='control'>
+              <input
+                type='password'
+                className='input'
+                name='password'
+                id='password'
+                value={password}
+                onChange={onChange}
+                placeholder='Enter password'
+                required
+              />
+            </div>
           </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              className='form-control'
-              name='password2'
-              id='password2'
-              value={password2}
-              onChange={onChange}
-              placeholder='Confirm password'
-              required
-            />
+          <div className='field'>
+            <div className='control'>
+              <input
+                type='password'
+                className='input'
+                name='password2'
+                id='password2'
+                value={password2}
+                onChange={onChange}
+                placeholder='Confirm password'
+                required
+              />
+            </div>
           </div>
-          <div className='form-group'>
-            <button className='btn btn-block'>Submit</button>
+          <div className='field'>
+            <div className='control'>
+              <button className='button button-is-link is-primary'>
+                Submit
+              </button>
+            </div>
           </div>
         </form>
       </section>
